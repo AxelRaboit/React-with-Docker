@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-    front:
+    frontend:
         image: node:19
         ports:
             - "3000:3000"
@@ -14,6 +14,8 @@ services:
             - react_docker_frontend
         command: bash -c "\
          if [ ! -d /var/www/app ]; then \
+         mkdir /var/www/app && \
+         chmod -R 777 /var/www/app && \
          npx create-react-app /var/www/app; \
          fi && \
          cd /var/www/app && \
