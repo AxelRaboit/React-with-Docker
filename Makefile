@@ -27,6 +27,6 @@ logs:
 clean:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down -v
 
-.PHONY: bash # This allows to use the command "make bash" to connect to the container trough bash
-exec-bash:
+.PHONY: exec-cli-app # This allows to use the command "make exec-cli-app" to connect to the container trough bash
+exec-cli-app:
 	docker exec -it $(CONTAINER_FRONT) bash
