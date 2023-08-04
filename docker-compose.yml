@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+    front:
+        image: node:19
+        ports:
+            - "3000:3000"
+        container_name: react_docker_frontend
+        stdin_open: true
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        networks:
+            - react_docker_frontend
+        command: bash -c "\
+         if [ ! -d /var/www/app ]; then \
+         npx create-react-app /var/www/app; \
+         fi && \
+         cd /var/www/app && \
+         npm install \
+         styled-components axios react-redux @reduxjs/toolkit react-router react-router-dom sass redux-persist  && \
+         npm start && \
+         chmod -R 777 /var/www/app"
+
+networks:
+    react_docker_frontend:
